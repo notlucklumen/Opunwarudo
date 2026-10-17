@@ -50,14 +50,17 @@ let doorStage = 0
 
 door.addEventListener('click', function()
 {
-    if (doorStage == 0)
+    if (doorStage === 0)
     {
         door.src = home2Asset
         doorSound.play()
-        doorStage = 1
+        setTimeout(function()
+        {
+           doorStage = 1
+        })
     }
     
-    if (doorStage == 1)
+    if (doorStage === 1)
     {
         window.location.href = 'pages/superdoor'
     }
