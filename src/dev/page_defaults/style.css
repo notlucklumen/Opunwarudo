@@ -1,4 +1,5 @@
 html, body
 {
-  font-family: arial
+  font-family: arial;
+  user-select: none
 }
