@@ -62,19 +62,25 @@ function decide(lang)
     
     localStorage.setItem('opw_lang', lang)
     
-    let check = setInterval(function()
+    setTimeout(function()
     {
-        if (localStorage.getItem('opw_lang') === lang)
+        let check = setInterval(function()
         {
-            alert('Set Lang') // Debugging
-            clearInterval(check)
-        }
-        else
-        {
-            localStorage.setItem('opw_lang', lang)
-        }
-    },
-    100)
+            if (localStorage.getItem('opw_lang') === lang)
+            {
+                clearInterval(check)
+                setTimeout(function()
+                {
+                    window.location.href = 'https://notlucklumen.github.io/Opunwarudo/src/pages/home/'
+                }, 500)
+            }
+            else
+            {
+                localStorage.setItem('opw_lang', lang)
+            }
+        },
+        100)
+    }, 1000)
 }
 
 engBtn.style.cursor = 'pointer'
