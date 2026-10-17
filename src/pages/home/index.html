@@ -54,14 +54,13 @@ door.addEventListener('click', function()
     {
         door.src = home2Asset
         doorSound.play()
+        doorStage = 1
     }
     
     if (doorStage == 1)
     {
         window.location.href = 'pages/superdoor'
     }
-    
-    doorStage = doorStage + 1
 })
 
 </script>
