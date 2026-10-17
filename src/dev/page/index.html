@@ -2,11 +2,13 @@
 <html>
 <head>
 <base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/">
+<link rel='stylesheet' href='dev/page_defaults/style.css'>
+
 </head>
 
 <!--PAGE DEFAULTS-->
-<style src='dev/page_defaults/index.html'></style>
 <html src='dev/page_defaults/index.html'></html>
+<style src='dev/page_defaults/style.css'></style>
 <script src="dev/page_defaults/script.js"></script>
 <!--END OF PAGE DEFAULTS-->
 
@@ -14,20 +16,27 @@
 
 html, body
 {
-  background-color: black;
+  background-color: white;
   margin-top: 30px;
-  zoom: 65%
+  font-family: sans-serif;
+  zoom: 72%
 }
 
 </style>
-
 <body>
 
+<div align='center'>
 
+
+
+</div>
 
 </body>
-
 <script>
+    
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function src(img)
 {
@@ -36,5 +45,19 @@ function src(img)
     return asset.src
 }
 
+const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
+
+// TRANSLATIONS ///////////////
+if (!sandboxed)
+{
+    
+if (localStorage.getItem('opw_lang') == 'eng')
+{
+    prizeText.textContent = 'Intelligent!'
+}
+
+}
+//////////////////////////////
+
 </script>
-</html>
+</html> <!--<!  its because i love it here.  >-->
