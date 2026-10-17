@@ -8,6 +8,7 @@
 
 <!--PAGE DEFAULTS-->
 <html src='dev/page_defaults/index.html'></html>
+<style src='dev/page_defaults/style.css'></style>
 <script src="dev/page_defaults/script.js"></script>
 <!--END OF PAGE DEFAULTS-->
 
@@ -23,7 +24,7 @@ html, body
 
 #door
 {
-    position: relative;
+    position: relative
 }
 
 #prizeText
@@ -56,16 +57,33 @@ html, body
 #doorArea
 {
     width: fit-content;
-    height: fit-content;
+    height: fit-content
+}
+
+#secretArea
+{
+    position: absolute;
+    top: 775px;
+    left: 510px;
+}
+
+#secret
+{
+    position: relative;
+    transform: scale(0.2) rotate(0deg);
 }
 
 </style>
 <body>
 
 <div align='center'>
+    
+<div id='secretArea'>
+    <img id='secret' src='assets/sekret.png'>
+</div>
 
 <div id='doorArea'>
-<img id='door' src='assets/door.png'>
+    <img id='door' src='assets/door.png'>
 </div>
 
 <p id='prizeText' style='font-size: 40px; opacity: 0'>素晴らしい天才！！</p>
@@ -93,6 +111,18 @@ const sandboxed = window.self !== window.top // checks if the current html sourc
 const door = document.getElementById('door')
 const doorArea = document.getElementById('doorArea')
 const prizeText = document.getElementById('prizeText')
+const secret = document.getElementById('secret')
+
+setTimeout(async function() // secret shake
+{
+    while (true)
+    {
+        secret.style.transform = 'translateY(-435px) translateX(-340px) scale(0.2) rotate(0deg)'
+        await sleep(100)
+        secret.style.transform = 'translateY(-435px) translateX(-340px) scale(0.2) rotate(40deg)'
+        await sleep(100)
+    }
+})
 
 // TRANSLATIONS ///////////////
 if (!sandboxed)
@@ -121,6 +151,26 @@ doorArea.addEventListener('mouseleave', function()
     allow = false
     stopAlreadyHover = false
 })
+
+//secret.style.visibility = 'hidden'
+
+function completedChallenge()
+{
+    door.classList.add('move')
+    prizeText.classList.add('show')
+    doorOpened = true
+    hoverListen = false
+    
+    secret.style.visibility = 'visible'
+    secret.style.cursor = 'pointer'
+    
+    secret.addEventListener('click', function()
+    {
+        secret.style.cursor = ''
+        alert('i')
+    })
+}
+
 
 doorArea.addEventListener('mouseenter', async function()
 {
@@ -162,10 +212,7 @@ doorArea.addEventListener('mouseenter', async function()
 
             if (challengeDone)
             {
-                door.classList.add('move')
-                prizeText.classList.add('show')
-                doorOpened = true
-                hoverListen = false
+                completedChallenge()
             }
             else
             {
