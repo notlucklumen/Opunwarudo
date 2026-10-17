@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/">
+</head>
 
+<!--PAGE DEFAULTS-->
+<style src='dev/page_defaults/style.css'></style>
+<html src='dev/page_defaults/index.html'></html>
+<script src="dev/page_defaults/script.js"></script>
+<!--END OF PAGE DEFAULTS-->
+
+<style>
+
+html, body
+{
+    background-color: black;
+    color:white;
+    line-height: 10px;
+    margin-top: 70px;
+    font-family: sans-serif;
+    opacity: 1;
+}
+
+body.fadeOut
+{
+    animation: body 1s ease-in forwards;
+}
+
+@keyframes body
+{
+    0% {opacity: 1}
+    100% {opacity: 0}
+}
+
+</style>
+
+<body>
+<div align='center'>
+
+<p style='font-size: 25px'>What is your language?</p>
+<p style='font-size: 15px; color:rgb(100, 100, 130)'>あなたの言語は何ですか？</p>
+
+<button id='engBtn' style='font-size: 12px'>English (英語)</button>
+<button id ='jpnBtn' style='font-size: 12px'>日本語 (Japanese)</button>
+
+</div>
+</body>
+
+<script>
+    
+const engBtn = document.getElementById('engBtn')
+const jpnBtn = document.getElementById('jpnBtn')
+
+let hasDecided = false
+
+function decide(lang)
+{
+    if (hasDecided) return
+    hasDecided = true
+    document.body.classList.add('fadeOut')
+    
+    localStorage.setItem('opw_lang', lang)
+    
+    let check = setInterval(function()
+    {
+        if (localStorage.getItem('opw_lang') === lang)
+        {
+            alert('Set Lang') // Debugging
+            clearInterval(check)
+        }
+        else
+        {
+            localStorage.setItem('opw_lang', lang)
+        }
+    },
+    100)
+}
+
+engBtn.style.cursor = 'pointer'
+jpnBtn.style.cursor = 'pointer'
+
+engBtn.addEventListener('click', function(){jpnBtn.style.cursor = ''; engBtn.style.cursor = ''})
+jpnBtn.addEventListener('click', function(){engBtn.style.cursor = ''; jpnBtn.style.cursor = ''})
+
+engBtn.addEventListener('click',function(){decide('eng')})
+jpnBtn.addEventListener('click',function(){decide('jpn')})
+
+</script>
+
+</html>
