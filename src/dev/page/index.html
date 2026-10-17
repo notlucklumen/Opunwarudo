@@ -16,22 +16,21 @@
 
 html, body
 {
-  margin-top: 30px;
-  font-family: sans-serif;
-  zoom: 72%;
-  line-height: 0px;
-  opacity: 1;
+    margin-top: 30px;
+    font-family: sans-serif;
+    zoom: 72%;
+    line-height: 0px;
+    opacity: 1;
 }
 
-body.fadeOut
+html
 {
-    animation: fadeOut 1s ease-in-out forwards;
+    
 }
 
-@keyframes fadeOut
+body
 {
-    0% {opacity: 1}
-    100% {opacity: 0}
+    
 }
 
 </style>
@@ -39,21 +38,13 @@ body.fadeOut
 
 <div align='center'>
     
-<img id='opwLogo' width='750px' src='assets/github/opw_logo.png'>
-
-<p id='homePage' style='font-size: 40px; margin-top: 109px'>Main Home Page</p>
-
-<p id='placeholder' style='font-size: 30px;'>This page is a placeholder for WIP pages.</p>
-
-<button style='scale: 2;margin-top: 50px;height: 30px' id='playButton' onclick='playOpw'>Play Opunwarudo</button>
-
-<p id='clickIt' style='font-size: 30px; margin-top: 80px'>click it =)</p>
+<!--most elements in opw pages are centered-->
 
 </div>
 
 </body>
 <script>
-    
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -67,22 +58,9 @@ function src(img)
 
 const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
 
-const clickIt = document.getElementById('clickIt')
-const homePage = document.getElementById('homePage')
-const playButton = document.getElementById('playButton')
-const placeholder = document.getElementById('placeholder')
-const opwLogo = document.getElementById('opwLogo')
-
 function doJpnTranslate()
 {
-
-    document.body.style.backgroundColor = 'rgb(255, 222, 222)'
-    playButton.style.backgroundColor = 'rgb(200, 222, 222)'
-    opwLogo.src = 'assets/github/opw_jpn_logo.png'
-    placeholder.textContent = 'このページは、現在開発中のコンテンツを一時的に掲載する場所です。'
-    homePage.textContent = 'シェルターの窓'
-    playButton.textContent = 'ゲームをする'
-    clickIt.textContent = 'ボタンをクリックしてください = )'
+    // translate    
 }
 
 // TRANSLATIONS ///////////////
@@ -95,18 +73,7 @@ if (localStorage.getItem('opw_lang') == 'jpn')
 }
 
 }
-
 //////////////////////////////
-
-playButton.addEventListener('click', function()
-{
-    document.body.classList.add('fadeOut')
-
-    setTimeout(function()
-    {
-        window.location.href = 'pages/main'
-    }, 1200)
-})
 
 </script>
 </html>
