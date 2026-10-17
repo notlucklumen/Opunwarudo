@@ -24,19 +24,16 @@ html, body
 </body>
 <script>
     
-function preload(img)
+function src(img)
 {
-    switch (img.slice(-4))
-    {
-        case '.png':
-            const preload = new Image()
-            preload.src = img
-    }
+    let asset = new Image()
+    asset.src = img
+    return asset.src
 }
 
-preload('home1.png')
-preload('home2.png')
-    
+const home1Asset = src('home1.png')
+const home2Asset = src('home2.png')
+
 const doorSound = new Audio('door_open.wav')
 
 const door = document.getElementById('door')
@@ -48,7 +45,7 @@ door.addEventListener('click', function()
 {
     if (doorStage == 0)
     {
-        door.src = 'home2.png'
+        door.src = home2Asset
         doorSound.play()
     }
     
