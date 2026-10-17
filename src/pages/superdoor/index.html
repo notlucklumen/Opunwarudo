@@ -51,12 +51,20 @@ html, body
     100% {left: 260px}
 }
 
+#doorArea
+{
+    width: fit-content;
+    height: fit-content;
+}
+
 </style>
 <body>
 
 <div align='center'>
 
+<div id='doorArea'>
 <img id='door' src='assets/door.png'>
+</div>
 
 <p id='prizeText' style='font-size: 40px; opacity: 0'>素晴らしい天才！！</p>
 
@@ -64,6 +72,10 @@ html, body
 
 </body>
 <script>
+    
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function src(img)
 {
@@ -74,26 +86,56 @@ function src(img)
 
 src('assets/door.png')
 
+const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
+
 const door = document.getElementById('door')
+const doorArea = document.getElementById('doorArea')
 const prizeText = document.getElementById('prizeText')
+
+// TRANSLATIONS ///////////////
+if (!sandboxed)
+{
+    
+if (localStorage.getItem('opw_lang') == 'eng')
+{
+    prizeText.textContent = 'Intelligent!'
+}
+
+}
+//////////////////////////////
 
 let hoverListen = true
 let mouseHover = false
 let allow = true
+let stopAlreadyHover = true
 let challengeDone = false
 let doorOpened = false
 
-door.addEventListener('mouseenter',function(){mouseHover = true})
-door.addEventListener('mouseleave',function(){mouseHover = false})
+doorArea.addEventListener('mouseenter',function(){mouseHover = true})
+doorArea.addEventListener('mouseleave',function(){mouseHover = false})
 
-door.addEventListener('mouseleave', function()
+doorArea.addEventListener('mouseleave', function()
 {
     allow = false
+    stopAlreadyHover = false
 })
 
-door.addEventListener('mouseenter', function()
+doorArea.addEventListener('mouseenter', async function()
 {
     if (!hoverListen) return
+    
+    if (stopAlreadyHover)
+    {
+        for (let i = 0; i <= 1; i++)
+        {
+            door.style.visibility = 'hidden'
+            await sleep(50)
+            door.style.visibility = 'visible'
+            await sleep(50)
+        }
+        return
+    }
+    
     hoverListen = false
     
     door.style.visibility = 'hidden'
@@ -127,7 +169,7 @@ door.addEventListener('mouseenter', function()
             {
                 hoverListen = true
             }
-        }, 500)
+        }, 1000)
     }, 100)
 })
 
