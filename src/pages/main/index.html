@@ -53,11 +53,15 @@ body.fadeOut
 const engBtn = document.getElementById('engBtn')
 const jpnBtn = document.getElementById('jpnBtn')
 
+const mouseclick = new Audio('assets/mouseclick.mp3')
+
 let hasDecided = false
 
 function decide(lang)
 {
     if (hasDecided) return
+    mouseclick.play()
+    
     hasDecided = true
     document.body.classList.add('fadeOut')
     
