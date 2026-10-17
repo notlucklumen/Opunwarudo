@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/assets/">
+
+</head>
+<style>
+
+html, body
+{
+  background-color: black;
+  margin-top: 30px;
+  zoom: 65%
+}
+
+</style>
+<body>
+  
+<div align="center">
+<img id="door" src="home1.png">
+</div>
+
+</body>
+<script>
+    
+function preload(img)
+{
+    switch (img.slice(-4))
+    {
+        case '.png':
+            const preload = new Image()
+            preload.src = img
+    }
+}
+
+preload('home1.png')
+preload('home2.png')
+    
+const doorSound = new Audio('door_open.wav')
+
+const door = document.getElementById('door')
+door.style.cursor = 'pointer'
+
+let doorStage = 0
+
+door.addEventListener('click', function()
+{
+    if (doorStage == 0)
+    {
+        door.src = 'home2.png'
+        doorSound.play()
+    }
+    
+    if (doorStage == 1)
+    {
+        window.location.href = 'https://example.com'
+    }
+    
+    doorStage = doorStage + 1
+})
+
+</script>
+</html>
