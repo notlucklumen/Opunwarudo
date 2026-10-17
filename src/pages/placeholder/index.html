@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="https://notlucklumen.github.io/Opunwarudo/src/">
+<link rel='stylesheet' href='dev/page_defaults/style.css'>
+
+</head>
+
+<!--PAGE DEFAULTS-->
+<html src='dev/page_defaults/index.html'></html>
+<style src='dev/page_defaults/style.css'></style>
+<script src="dev/page_defaults/script.js"></script>
+<!--END OF PAGE DEFAULTS-->
+
+<style>
+
+html, body
+{
+  margin-top: 30px;
+  font-family: sans-serif;
+  zoom: 72%;
+  line-height: 0px;
+  opacity: 1;
+}
+
+body.fadeOut
+{
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut
+{
+    0% {opacity: 1}
+    100% {opacity: 0}
+}
+
+</style>
+<body>
+
+<div align='center'>
+    
+<img id='opwLogo' width='750px' src='assets/github/opw_logo.png'>
+
+<p id='homePage' style='font-size: 40px; margin-top: 109px'>Main Home Page</p>
+
+<p id='placeholder' style='font-size: 30px;'>This page is a placeholder for WIP pages.</p>
+
+<button style='scale: 2;margin-top: 50px;height: 30px' id='playButton' onclick='playOpw'>Play Opunwarudo</button>
+
+<p id='clickIt' style='font-size: 30px; margin-top: 80px'>click it =)</p>
+
+</div>
+
+</body>
+<script>
+    
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function src(img)
+{
+    let asset = new Image()
+    asset.src = img
+    return asset.src
+}
+
+const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
+
+const clickIt = document.getElementById('clickIt')
+const homePage = document.getElementById('homePage')
+const playButton = document.getElementById('playButton')
+const placeholder = document.getElementById('placeholder')
+const opwLogo = document.getElementById('opwLogo')
+
+function doJpnTranslate()
+{
+
+    document.body.style.backgroundColor = 'rgb(255, 222, 222)'
+    playButton.style.backgroundColor = 'rgb(200, 222, 222)'
+    opwLogo.src = 'assets/github/opw_jpn_logo.png'
+    placeholder.textContent = 'このページは、現在開発中のコンテンツを一時的に掲載する場所です。'
+    homePage.textContent = 'シェルターの窓'
+    playButton.textContent = 'ゲームをする'
+    clickIt.textContent = 'ボタンをクリックしてください = )'
+}
+
+// TRANSLATIONS ///////////////
+if (!sandboxed)
+{
+    
+if (localStorage.getItem('opw_lang') == 'jpn')
+{
+    doJpnTranslate()
+}
+
+}
+
+//////////////////////////////
+
+playButton.addEventListener('click', function()
+{
+    window.location.href = 'pages/main'
+})
+
+//document.body.classList.add('fadeOut')
+
+</script>
+</html>
