@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/">
+<base href="https://notlucklumen.github.io/Opunwarudo/src/">
 <link rel='stylesheet' href='dev/page_defaults/style.css'>
 
 </head>
@@ -16,18 +16,24 @@
 
 html, body
 {
-  background-color: white;
   margin-top: 30px;
   font-family: sans-serif;
-  zoom: 72%
+  zoom: 72%;
+  line-height: 0px;
+  opacity: 1;
 }
+
+body
+{
+  
+{
 
 </style>
 <body>
 
 <div align='center'>
-
-
+    
+<!--most of these pages start in a center divider-->
 
 </div>
 
@@ -47,17 +53,29 @@ function src(img)
 
 const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
 
+const clickIt = document.getElementById('clickIt')
+const homePage = document.getElementById('homePage')
+const playButton = document.getElementById('playButton')
+const placeholder = document.getElementById('placeholder')
+const opwLogo = document.getElementById('opwLogo')
+
+function doJpnTranslate()
+{
+    // japanese translation under
+}
+
 // TRANSLATIONS ///////////////
 if (!sandboxed)
 {
     
-if (localStorage.getItem('opw_lang') == 'eng')
+if (localStorage.getItem('opw_lang') == 'jpn')
 {
-    prizeText.textContent = 'Intelligent!'
+    doJpnTranslate()
 }
 
 }
+
 //////////////////////////////
 
 </script>
-</html> <!--<!  its because i love it here.  >-->
+</html>
