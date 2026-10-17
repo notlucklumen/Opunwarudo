@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>スーパー・ドア</title>
-<base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/">
+<base href="https://notlucklumen.github.io/Opunwarudo/src/">
 <link rel='stylesheet' href='dev/page_defaults/style.css'>
 
 </head>
@@ -65,7 +65,7 @@ html, body
 {
     position: absolute;
     top: 775px;
-    left: 510px;
+    left: 50%;
 }
 
 #secret
@@ -113,6 +113,7 @@ const door = document.getElementById('door')
 const doorArea = document.getElementById('doorArea')
 const prizeText = document.getElementById('prizeText')
 const secret = document.getElementById('secret')
+const secretArea = document.getElementById('secretArea')
 
 setTimeout(async function() // secret shake
 {
@@ -163,11 +164,11 @@ function completedChallenge()
     hoverListen = false
     
     secret.style.visibility = 'visible'
-    secret.style.cursor = 'pointer'
+    secretArea.style.cursor = 'pointer'
     
-    secret.addEventListener('click', function()
+    secretArea.addEventListener('click', function()
     {
-        window.location.href = 'https://example.com'
+        window.location.href = 'pages/placeholder'
     })
 }
 
