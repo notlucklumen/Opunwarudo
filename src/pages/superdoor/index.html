@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="https://github.com/notlucklumen/Opunwarudo/raw/refs/heads/main/src/">
+</head>
 
+<!--PAGE DEFAULTS-->
+<style src='dev/page_defaults/index.html'></style>
+<html src='dev/page_defaults/index.html'></html>
+<script src="dev/page_defaults/script.js"></script>
+<!--END OF PAGE DEFAULTS-->
+
+<style>
+
+html, body
+{
+  background-color: white;
+  margin-top: 30px;
+  zoom: 65%
+}
+
+#door
+{
+    position: relative;
+}
+
+#prizeText
+{
+    opacity: 0;
+}
+
+#prizeText.show
+{
+    animation: prizeText 1s linear forwards;
+}
+
+@keyframes prizeText
+{
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+#door.move
+{
+    animation: door 1s ease-in-out forwards;
+}
+
+@keyframes door
+{
+    0% {left: 0px}
+    100% {left: 260px}
+}
+
+</style>
+<body>
+
+<div align='center'>
+
+<img id='door' src='assets/door.png'>
+
+<p id='prizeText' style='font-size: 40px; opacity: 0'>素晴らしい天才！！</p>
+
+</div>
+
+</body>
+<script>
+
+function src(img)
+{
+    let asset = new Image()
+    asset.src = img
+    return asset.src
+}
+
+src('assets/door.png')
+
+const door = document.getElementById('door')
+const prizeText = document.getElementById('prizeText')
+
+let hoverListen = true
+let mouseHover = false
+let allow = true
+let challengeDone = false
+let doorOpened = false
+
+door.addEventListener('mouseenter',function(){mouseHover = true})
+door.addEventListener('mouseleave',function(){mouseHover = false})
+
+door.addEventListener('mouseleave', function()
+{
+    allow = false
+})
+
+door.addEventListener('mouseenter', function()
+{
+    if (!hoverListen) return
+    hoverListen = false
+    
+    door.style.visibility = 'hidden'
+    setTimeout(function()
+    {
+        door.style.visibility = 'visible'
+        allow = true
+        challengeDone = true
+        if (mouseHover) hoverListen = true
+        
+        let check = setInterval(function()
+        {
+            if (!allow)
+            {
+                challengeDone = false
+            }
+        }, 10)
+        
+        setTimeout(function()
+        {
+            clearInterval(check)
+
+            if (challengeDone)
+            {
+                door.classList.add('move')
+                prizeText.classList.add('show')
+                doorOpened = true
+                hoverListen = false
+            }
+            else
+            {
+                hoverListen = true
+            }
+        }, 500)
+    }, 100)
+})
+
+</script>
+</html> <!--<!  its because i love it here.  >-->
