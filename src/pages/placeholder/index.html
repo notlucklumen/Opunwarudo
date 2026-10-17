@@ -73,6 +73,8 @@ const playButton = document.getElementById('playButton')
 const placeholder = document.getElementById('placeholder')
 const opwLogo = document.getElementById('opwLogo')
 
+const mouseclick = new Audio('assets/mouseclick.mp3')
+
 function doJpnTranslate()
 {
 
@@ -100,10 +102,14 @@ if (localStorage.getItem('opw_lang') == 'jpn')
 
 playButton.addEventListener('click', function()
 {
-    window.location.href = 'pages/main'
-})
+    mouseclick.play()
+    document.body.classList.add('fadeOut')
 
-//document.body.classList.add('fadeOut')
+    setTimeout(function()
+    {
+        window.location.href = 'pages/main'
+    }, 1200)
+})
 
 </script>
 </html>
