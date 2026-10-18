@@ -133,7 +133,7 @@ const anagram = document.getElementById('anagram')
 const text = document.getElementById('text')
 const angel = document.getElementById('angel')
 
-const wawah = new Audio('assets/wawah.wav')
+//const wawah = new Audio('assets/wawah.wav')
 const obtained = new Audio('assets/obtained.wav')
 
 let wawahDone = false
@@ -209,7 +209,7 @@ addHover(angel)
 
 limni.addEventListener('click', function()
 {
-    if (!wawahDone) wawah.play()
+    if (!wawahDone) //wawah.play()
     wawahDone = true
     
     windowClicked(3, 'pages/placeholder')
