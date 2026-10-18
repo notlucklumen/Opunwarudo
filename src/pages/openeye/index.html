@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>広いEYE</title>
+<base href="https://notlucklumen.github.io/Opunwarudo/src/">
+<link rel='stylesheet' href='dev/page_defaults/style.css'>
+
+</head>
+
+<!--PAGE DEFAULTS-->
+<html src='dev/page_defaults/index.html'></html>
+<style src='dev/page_defaults/style.css'></style>
+<script src="dev/page_defaults/script.js"></script>
+<!--END OF PAGE DEFAULTS-->
+
+<style>
+
+html, body
+{
+    margin-top: 30px;
+    font-family: sans-serif;
+    zoom: 68%;
+    line-height: 0px;
+    opacity: 1
+}
+
+.flex-container
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+#saus
+{
+    position: absolute;
+}
+
+#limni
+{
+    position: absolute;
+    scale: 0.8;
+    animation: limniKf 1s linear infinite alternate;
+}
+
+#angel
+{
+    position: absolute;
+    scale: 0.8;
+    animation: angelKf 2s ease-in-out infinite alternate;
+}
+
+#anagram
+{
+    position: absolute;
+    scale: 0.8;
+}
+
+#text
+{
+    animation: textKf 3s ease-in-out infinite alternate;
+}
+
+#anagram
+{
+    animation: anagramKf 2s ease-in-out infinite;
+}
+
+@keyframes angelKf
+{
+    0% {transform: translate(180%, 0%)}
+    50% {transform: translate(0%, 400%)}
+    100% {transform: translate(-180%, 0%)}
+}
+
+@keyframes anagramKf
+{
+    0% {transform: translate(-17.5%, -13%)}
+    20% {transform: translate(-17.5%, 187%)}
+    40% {transform: translate(17.5%, 187%)}
+    60% {transform: translate(17.5%, -13%)}
+    100% {transform: translate(-17.5%, -13%)}
+}
+
+
+@keyframes limniKf
+{
+    0% {transform: translateY(-15%)}
+    100% {transform: translateY(155%)}
+}
+
+@keyframes textKf
+{
+    0% {transform: translateY(-15%)}
+    100% {transform: translateY(700%)}
+}
+
+</style>
+<body>
+
+<div class="flex-container">
+
+<img id='saus' style='z-index: 0' src='assets/saus.png'>
+<img id='limni' style='z-index: 1' src='assets/limni.png'>
+<img id='anagram' style='z-index: 2' src='assets/anagram.png'>
+
+<img id='angel' style='scale: 0.4; z-index: 3; visibility: hidden' src='assets/angelic_angel.png'>
+
+<p id='text' style='background-color: white; padding: 50px; font-size: 40px; z-index: 100'>Interact with the screens!</p>
+
+</div>
+
+</body>
+<script>
+    
+function sleep(ms)
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function src(img)
+{
+    let asset = new Image()
+    asset.src = img
+    return asset.src
+}
+
+const sandboxed = window.self !== window.top // checks if the current html source is being used on another site!
+
+const limni = document.getElementById('limni')
+const anagram = document.getElementById('anagram')
+const text = document.getElementById('text')
+const angel = document.getElementById('angel')
+
+const wawah = new Audio('assets/wawah.wav')
+const obtained = new Audio('assets/obtained.wav')
+
+let wawahDone = false
+let angleExists = false
+
+function addHover(el)
+{
+    el.addEventListener('mouseenter', function()
+    {
+        el.style.filter = 'brightness(70%)'
+    })
+    el.addEventListener('mouseleave', function()
+    {
+        el.style.filter = 'brightness(100%)'
+    })
+}
+
+function angelVisibility(bool)
+{
+    angel.style.visibility = !bool ? 'hidden' : 'visible'
+}
+
+function angelClick(goal, fn)
+{
+    let angelClicks = 0
+    let finished = false
+    let canClick = true
+    
+    angel.addEventListener('click', function()
+    {
+        if (!canClick) return
+        canClick = false
+        angelVisibility(false)
+        
+        setTimeout(function()
+        {
+            angelVisibility(true)
+            canClick = true
+        }, 100)
+        
+        angelClicks += 1
+        
+        if (angelClicks >= goal)
+        {
+            if (!finished) fn()
+            finished = true
+            angelVisibility(f)
+        }
+    })
+}
+
+function windowClicked(goal, link)
+{
+    if (!angleExists)
+    {
+        angleExists = true
+        obtained.play()
+        
+        angelVisibility(true)
+        
+        angelClick(goal, function()
+        {
+            angelVisibility(false)
+            angelExists = false
+            window.location.href = link
+        })
+    }
+}
+
+addHover(limni)
+addHover(anagram)
+addHover(angel)
+
+limni.addEventListener('click', function()
+{
+    if (!wawahDone) wawah.play()
+    wawahDone = true
+    
+    windowClicked(3, 'pages/placeholder')
+})
+
+anagram.addEventListener('click', function()
+{
+    windowClicked(6, 'pages/placeholder')
+})
+
+function doJpnTranslate()
+{
+    text.textContent = 'ゲーム・インタラクション・プロトコルを開始せよ'
+}
+
+// TRANSLATIONS ///////////////
+if (!sandboxed)
+{
+    
+if (localStorage.getItem('opw_lang') == 'jpn')
+{
+    doJpnTranslate()
+}
+
+}
+//////////////////////////////
+
+</script>
+</html>
